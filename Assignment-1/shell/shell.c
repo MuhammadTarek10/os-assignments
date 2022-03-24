@@ -80,15 +80,13 @@ int launchShell(char** args){
         if(execvp(args[0], args) == -1){
             perror("Error executing...\n");
             exit(EXIT_FAILURE);
-        }else if(pid < 0){
-            perror("Error in processes...\n");
-        }else{
-            do{
-                wpid = waitpid(pid, &status, WUNTRACED);
-            } while(!WIFEXITED(status) && !WIFSIGNALED(status));
-        }
+            }
+    }else if(pid < 0){
+        perror("Error in processes...\n");
     }else{
-        wait(NULL);
+        do{
+            wpid = waitpid(pid, &status, WUNTRACED);
+        } while(!WIFEXITED(status) && !WIFSIGNALED(status));
     }
 
     return 1;
