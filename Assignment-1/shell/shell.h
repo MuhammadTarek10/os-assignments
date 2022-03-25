@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
+#include <sys/wait.h>
 
 #define TOKEN_BUFFER_SIZE 64
 #define TOKEN_DELIMTER " \t\r\n\a"
