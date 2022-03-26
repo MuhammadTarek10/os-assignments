@@ -1,5 +1,5 @@
 
-int checkCD(char** args){
+bool checkCD(char** args){
     if(args[1] == NULL)
         fprintf(stderr, "Expected command after cd...\n");
     else{
@@ -7,17 +7,17 @@ int checkCD(char** args){
             perror("Error in Changing Directory...\n");
     }
 
-    return 1;
+    return true;
 }
 
-int checkHelp(char** args){
+bool checkHelp(char** args){
     for(int i=0; i<getBuiltInNums(); ++i)
         printf("%s\n", builtInChar[i]);
-    return 1;
+    return true;
 }
 
-int checkExit(char** args){
-    return 0;
+bool checkExit(char** args){
+    return false;
 }
 
 int getBuiltInNums(){

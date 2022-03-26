@@ -2,7 +2,7 @@
 void getJobDone(){
     char *line;
     char **args;
-    int status;
+    bool status;
 
     do {
         printf(">>>");
@@ -60,9 +60,9 @@ char** readArgs(char* line){
     return tokens;
 }
 
-int executeShell(char** args){
+bool executeShell(char** args){
     if(args[0] == NULL)
-        return 1;
+        return true;
 
     for(int i=0; i<getBuiltInNums(); ++i){
         if(strcmp(args[0], builtInChar[i]) == 0)
@@ -71,14 +71,15 @@ int executeShell(char** args){
 
     return launchShell(args);
 }
-int launchShell(char** args){
+bool launchShell(char** args){
     pid_t pid, wpid;
-    int status, flag = 0, i = 0;
+    int status, i = 0, wait = true;
     const char* AND_OPERATOR = "&";
 
     while(args[i] != NULL){
         if(strcmp(args[i], AND_OPERATOR) == 0){
             args[i] = NULL;
+            wait = false;
         }
         ++i;
     }
@@ -92,10 +93,12 @@ int launchShell(char** args){
     }else if(pid < 0){
         perror("Error in processes...\n");
     }else{
-        do{
-            wpid = waitpid(pid, &status, WUNTRACED);
-        } while(!WIFEXITED(status) && !WIFSIGNALED(status));
+        if(wait){
+            do{
+                wpid = waitpid(pid, &status, WUNTRACED);
+            } while(!WIFEXITED(status) && !WIFSIGNALED(status));
+        }
     }
 
-    return 1;
+    return true;
 }

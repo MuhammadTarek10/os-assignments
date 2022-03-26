@@ -2,10 +2,11 @@
 
 #include <stdio.h>
 #include <unistd.h>
+#include <stdbool.h>
 
-int checkCD(char** args);
-int checkHelp(char** args);
-int checkExit(char** args);
+bool checkCD(char** args);
+bool checkHelp(char** args);
+bool checkExit(char** args);
 int getBuiltInNums();
 
 char *builtInChar[] = {
@@ -13,7 +14,7 @@ char *builtInChar[] = {
   "help",
   "exit"
 };
-int (*builtInFunctions[]) (char **) = {
+bool (*builtInFunctions[]) (char **) = {
   &checkCD,
   &checkHelp,
   &checkExit

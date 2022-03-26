@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
+#include <stdbool.h>
 #include <sys/wait.h>
 
 #define TOKEN_BUFFER_SIZE 64
@@ -12,8 +13,8 @@
 void getJobDone();
 char* readLine();
 char** readArgs(char* line);
-int launchShell(char** args);
-int executeShell(char** args);
+bool launchShell(char** args);
+bool executeShell(char** args);
 
 #include "shell.c"
 #define  _SHELL_C_INCLUDED_
