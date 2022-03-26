@@ -73,13 +73,13 @@ bool executeShell(char** args){
 }
 bool launchShell(char** args){
     pid_t pid, wpid;
-    int status, i = 0, wait = true;
+    int status, i = 0, toWait = true;
     const char* AND_OPERATOR = "&";
 
     while(args[i] != NULL){
         if(strcmp(args[i], AND_OPERATOR) == 0){
             args[i] = NULL;
-            wait = false;
+            toWait = false;
         }
         ++i;
     }
@@ -93,7 +93,7 @@ bool launchShell(char** args){
     }else if(pid < 0){
         perror("Error in processes...\n");
     }else{
-        if(wait){
+        if(toWait){
             do{
                 wpid = waitpid(pid, &status, WUNTRACED);
             } while(!WIFEXITED(status) && !WIFSIGNALED(status));
