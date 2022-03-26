@@ -73,7 +73,15 @@ int executeShell(char** args){
 }
 int launchShell(char** args){
     pid_t pid, wpid;
-    int status;
+    int status, flag = 0, i = 0;
+    const char* AND_OPERATOR = "&";
+
+    while(args[i] != NULL){
+        if(strcmp(args[i], AND_OPERATOR) == 0){
+            args[i] = NULL;
+        }
+        ++i;
+    }
 
     pid = fork();
     if(pid == 0){
