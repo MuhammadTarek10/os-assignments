@@ -11,10 +11,12 @@
 #define TOKEN_DELIMTER " \t\r\n\a"
 
 void getJobDone();
+void logHandle();
 char* readLine();
 char** readArgs(char* line);
 bool launchShell(char** args);
 bool executeShell(char** args);
+
 
 #include "shell.c"
 #define  _SHELL_C_INCLUDED_

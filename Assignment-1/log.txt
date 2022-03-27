@@ -1,0 +1,4 @@
+[LOG] child proccess terminated.
+[LOG] child proccess terminated.
+[LOG] child proccess terminated.
+[LOG] child proccess terminated.
