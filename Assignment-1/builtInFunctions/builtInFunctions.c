@@ -10,12 +10,6 @@ bool checkCD(char** args){
     return true;
 }
 
-bool checkHelp(char** args){
-    for(int i=0; i<getBuiltInNums(); ++i)
-        printf("%s\n", builtInChar[i]);
-    return true;
-}
-
 bool checkExit(char** args){
     return false;
 }
